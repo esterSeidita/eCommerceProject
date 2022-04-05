@@ -39,7 +39,7 @@ const cardGenerator = (array, element, filterCategory = "", filterTitle = "") =>
     `
     <div id="${data.id}" class="productCard">
     <img src="${data.image}" alt="Product Image"/>
-    <p class="price">${data.price} €</p>
+    <p class="price">${priceIVA(data.price).toFixed(2)} €</p>
     <h3>${reduceString(data.title, 20)}...</h3>
     </div>
     `)
@@ -56,7 +56,7 @@ const cardGenerator = (array, element, filterCategory = "", filterTitle = "") =>
                 <div class="mainModal">
                     <h3>${currentCard.title}</h3>
                     <p>${currentCard.description}</p>
-                    <p class="modalPrice">${currentCard.price} €</p>
+                    <p class="modalPrice">${priceIVA(currentCard.price).toFixed(2)} €</p>
                     </div>
                 <button id="${card.id-1}" class="cartBtn"><i class="fa fa-shopping-cart cartIcon" aria-hidden="true"></i></button>
             `
@@ -112,11 +112,11 @@ const checkoutGenerator = () => {
     // const checkoutDiv = document.createElement('div');
     let totalPrice = 0;
     const rows = localCartProducts.map(product => {
-        totalPrice += parseFloat(product.price);
+        totalPrice += parseFloat(priceIVA(product.price).toFixed(2));
         return `<tr>
             <td><img src="${product.image}"></td>
             <td>${product.title}</td>
-            <td>${product.price} €</td>
+            <td>${priceIVA(product.price).toFixed(2)} €</td>
         </tr>`
     }
     ).join("");
@@ -137,7 +137,7 @@ const checkoutGenerator = () => {
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="2">Total</th>
+                    <th colspan="2">Total (IVA inc.)</th>
                     <td>${totalPrice.toFixed(2)} €</td>
                 </tr>
             </tfoot>
@@ -147,10 +147,71 @@ const checkoutGenerator = () => {
 
     q(".confirmPurchase").addEventListener("click", () => {
         q(".checkout").innerHTML = `
-        <h1>Thank You!! :)</h1>
+        <h1>Shipping Datas</h1>
+        <form>
+        <div class="row">
+          <input type="text" id="name" placeholder="Your Name" />
+          <input type="text" id="number" placeholder="Your Number" />
+        </div>
+  
+        <div class="row">
+            <input type="text" id="country" placeholder="Country" />
+            <input type="text" id="address" placeholder="Address" />
+        </div>
+        <div class="creditCard">
+          <h3>Credit Card Detail</h3>
+          <div class="row">
+            <input type="text" id="cardNumber" placeholder="Card Number" />
+          </div>
+          <div class="row">
+            <select name="month" id="month">
+              <option value="january">January</option>
+              <option value="february">February</option>
+              <option value="march">March</option>
+              <option value="april">April</option>
+              <option value="may">May</option>
+              <option value="june">June</option>
+              <option value="july">July</option>
+              <option value="august">August</option>
+              <option value="september">September</option>
+              <option value="october">October</option>
+              <option value="november">November</option>
+              <option value="december">December</option>
+            </select>
+            <select name="year" id="year">
+              <option value="2016">2016</option>
+              <option value="2017">2017</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+            </select>
+          </div>
+  
+          <div class="row">
+              <input type="text" placeholder="CVV" />
+            <div class="cvv-details">
+              <p>
+                3 or 4 digits usually found
+                on the signature strip
+              </p>
+            </div>
+          </div>
+        </div>
+        <input type="submit" value="Confirm" id="submitForm"/>
+      </form>
     `;
-    localStorage.removeItem("cartProducts");
-    q(".numProductsInCart").textContent = "";
+
+    q("#submitForm").addEventListener("click", (e) => {
+        e.preventDefault();
+        localStorage.removeItem("cartProducts");
+        q(".numProductsInCart").textContent = "";
+        q(".checkout").innerHTML = `<p>Thank you for the purchase! :)</p>`;
+        return false;
+    })
 
     });
 }
@@ -158,3 +219,9 @@ const checkoutGenerator = () => {
 
 
 q(".cartBlock").addEventListener("click", checkoutGenerator)
+
+
+
+const priceIVA = (price, IVA = 22) => {
+    return parseFloat(price) + (parseFloat(price)*parseFloat(IVA)/100);
+}

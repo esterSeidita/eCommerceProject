@@ -95,7 +95,7 @@ nav{
     background-color: #232f3e;
     padding: 1em;
     text-align: center;
-    margin-top: 70px;
+    margin-top: 40px;
     position: fixed;
     width: 100%;
 }
@@ -152,7 +152,7 @@ header h1{
 /* -------------------------------------------------------------------------- */
 
 .pageWrapper{
-    margin-top: 120px;
+    margin-top: 28px;
 }
 
 .loading{
@@ -165,21 +165,13 @@ header h1{
     width: 60px;
 }
 
-/* .categoryTitle{
-    color: #131921;
-    padding: 0 1em;
-    font-size: 1.5rem;
-    margin-bottom: 1.5em;
-    margin-top: 1em;
-    font-weight: bold;
-} */
-
 .productsWrapper{
     color: #131921;
     display: flex;
     flex-flow: wrap;
     justify-content: center;
     gap: 20px;
+    margin-top: 7em;
 }
 
 .productCard{
@@ -275,7 +267,7 @@ header h1{
     color: #131921;
     border-radius: 0.3em;
     text-align: right;
-    margin-top: 7em;
+    margin-top: 3em;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -288,9 +280,11 @@ header h1{
 }
 
 .checkout h1{
-    text-align: left;
+    text-align: center;
     font-size: 1.3rem;
-    margin: 25px 0 15px 25px;
+    margin: 0;
+    margin-bottom: 1em;
+    padding-top: 1em;
 }
 
 .checkout td, .checkout th{
@@ -326,11 +320,78 @@ header h1{
     width: 100%;
     max-width: 700px;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                             Checkout Form Data                             */
+/* -------------------------------------------------------------------------- */
+
+form{
+    width: 100%;
+    max-width: 550px;
+    padding: 2em;
+    border-radius: 1em;
+    position: fixed;
+    top: 50%; left:50%; transform: translate(-50%, -50%);
+}
+
+form .row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.5em;
+    gap:10px
+}
+
+form h3{
+    text-align: center;
+}
+
+form select{
+    width: 45%;
+    padding: 0.5em;
+}
+
+form p{
+    display: inline;
+}
+
+form input[type="text"]{
+    padding: 0.3em;
+    width: 100%;
+}
+
+form input[type="submit"]{
+    padding: 0.8em;
+    display: block;
+    width: 100px;
+    margin-top: 10px;
+    margin-left: auto;
+}
+
+
 /* -------------------------------------------------------------------------- */
 /*                                 Responsive                                 */
 /* -------------------------------------------------------------------------- */
 
 @media all and (min-width:700px) {
+
+    form{
+        /* border: 3px solid #131921; */
+        box-shadow: 1px 1px 15px 0 #131921;
+    }
+
+    form input[type="text"]{
+        width: 45%;
+    }
+
+    form #cardNumber{
+        width: 100%;
+    }
+
+    form .cvv-details{
+        width: 40%;
+    }
+
     .navbar{
         display: block;
     }
@@ -349,6 +410,7 @@ header h1{
 
     .productsWrapper{
         gap: 50px;
+        margin-top: 4em;
     }
 
     .productCard{    
@@ -368,25 +430,21 @@ header h1{
         margin-right: 20px;
     }
     
-
     .pageWrapper{
-        margin: 100px 0 0 180px;
+        margin-left: 180px;
     }
-
-    /* .categoryTitle{
-        margin-top: 0;
-    } */
 
     .modal{
         max-width: 1000px;
         border-radius: 1em;
     }
-.modal button{
-    width: 40%;
-    right: 35px;
-    bottom: 20px;
-    border-radius: 0.3em;
-}
+
+    .modal button{
+        width: 40%;
+        right: 35px;
+        bottom: 20px;
+        border-radius: 0.3em;
+    }
 
 .modal img{
     width: 40%;
@@ -413,6 +471,7 @@ header h1{
 }
 }
 
+
 @media all and (min-width: 1024px){
     .modal{
         max-width: 1000px;
@@ -437,4 +496,6 @@ header h1{
 .modal h3{
  font-size: 2rem;
 }
+
+
 }
