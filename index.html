@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>eCommerce</title>
+    <link rel="stylesheet" href="./assets/css/normalize.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <a href="">
+          <img class="logo" src="./assets/img/logo.png" alt="eCommerce.com" />
+        </a>
+        <div class="search">
+          <input type="text" id="search" />
+          <button class="searchBtn">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </div>
+        <p class="cartBlock">
+          <i class="fa fa-shopping-cart cartIcon" aria-hidden="true"></i>
+          <span class="numProductsInCart"></span>
+        </p>
+      </div>
+      <nav>
+        <a type="button" class="nav-btn"
+          >Categories <i class="fa fa-bars"></i
+        ></a>
+      </nav>
+    </header>
+
+    <div class="checkout"></div>
+
+    <div class="pageWrapper">
+
+        <div class="navbar">
+            <div class="closeBtn">x</div>
+            <h2>Categories</h2>
+            <ul class="categoryList">
+              <div class="loadingSidebar">
+                <img src="./assets/img/loading.gif" alt="Loading..." /> Loading ..
+              </div>
+            </ul>
+          </div>
+      <!-- <div class="categoryTitle">All Products:</div class="categoryTitle"> -->
+      <div class="productsWrapper">
+        <div class="loading">
+          <img src="./assets/img/loadingLight.gif" alt="Loading..." /> Loading
+          ..
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+    <div class="modal"></div>
+
+
+    <script src="./assets/js/functions.js" type="module"></script>
+    <script src="./assets/js/script.js" type="module"></script>
+  </body>
+</html>
