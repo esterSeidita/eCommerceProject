@@ -115,9 +115,6 @@ nav{
     margin: 1em;
 }
 
-
-
-
 .navbar {
     background-color: #232f3e;
     width: 100%;
@@ -125,7 +122,7 @@ nav{
     padding: 30px 10px;
     display: none;
     margin-top: 2em;
-    position: relative;
+    position: fixed;
 }
 
 .closeBtn{
@@ -278,14 +275,6 @@ header h1{
     max-width: 700px;
 }
 
-.checkout h1{
-    text-align: center;
-    font-size: 1.3rem;
-    margin: 0;
-    margin-bottom: 1em;
-    padding-top: 1em;
-}
-
 .checkout td, .checkout th{
     padding: 1em;
     font-size: 10px;
@@ -394,7 +383,6 @@ form button{
     .navbar{
     display: block;
     width: 180px !important;
-    position: fixed;
     height: calc(100vh - 70px) !important;
     bottom: 0;
     left:0;

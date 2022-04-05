@@ -123,7 +123,6 @@ const checkoutGenerator = () => {
 
     q(".pageWrapper").innerHTML = ""
     q(".checkout").innerHTML = `
-        <h1>Your Cart</h1>
         <table>
             <thead>
                 <tr>
