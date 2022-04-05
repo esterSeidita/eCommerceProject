@@ -45,6 +45,10 @@ const cardGenerator = (array, element, filterCategory = "", filterTitle = "") =>
     `)
     .join("")
 
+    /* -------------------------------------------------------------------------- */
+    /*                                 Modal Open                                 */
+    /* -------------------------------------------------------------------------- */
+
     const productCards = qAll(".productCard");
     productCards.forEach(card=>{
         card.addEventListener("click", () => {
@@ -52,7 +56,8 @@ const cardGenerator = (array, element, filterCategory = "", filterTitle = "") =>
             overlay.classList.add("open");
             modal.classList.add("open");
             modal.innerHTML=`
-                <img src="${currentCard.image}">
+                <img class="closeModalBtn" src="./assets/img/closeBtn.png">
+                <img class="modalImage" src="${currentCard.image}">
                 <div class="mainModal">
                     <h3>${currentCard.title}</h3>
                     <p>${currentCard.description}</p>
@@ -61,9 +66,9 @@ const cardGenerator = (array, element, filterCategory = "", filterTitle = "") =>
                 <button id="${card.id-1}" class="cartBtn"><i class="fa fa-shopping-cart cartIcon" aria-hidden="true"></i></button>
             `
 
-            /* -------------------------------------------------------------------------- */
-            /*                                 Add to Cart                                */
-            /* -------------------------------------------------------------------------- */
+    /* -------------------------------------------------------------------------- */
+    /*                                 Add to Cart                                */
+    /* -------------------------------------------------------------------------- */
 
             const cartBtns = qAll(".cartBtn");
             
@@ -85,6 +90,7 @@ const cardGenerator = (array, element, filterCategory = "", filterTitle = "") =>
                 }) //end onclick event
             }) //end forEach cart button
 
+            q(".closeModalBtn").addEventListener("click", closeModal);
     })// end event on click
 }) //end foreach card...
 } //end of function
