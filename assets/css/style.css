@@ -279,6 +279,19 @@ header h1{
     max-width: 700px;
 }
 
+.checkout table .delBtn{
+    border-radius: 3em;
+    background-color: #ab1c1c;
+    width: 25px;
+    height: 25px;
+    position: relative;
+    cursor: pointer;
+}
+
+.delBtn span{
+    position: absolute; top:50%; left: 50%; transform: translate(-50%, -50%);
+}
+
 .checkout td, .checkout th{
     padding: 1em;
     font-size: 10px;

@@ -17,6 +17,10 @@ if(localCartProducts !== null){
     q(".numProductsInCart").textContent = localCartProducts.length;
 }
 
+if (localCartProducts !== null && localCartProducts.length === 0){
+    q(".numProductsInCart").textContent = "";
+}
+
 const getApi = async(URL) => {
     const data = await fetch(URL);
     return await data.json();
@@ -73,7 +77,7 @@ const cardGenerator = (array, element, filterCategory = "", filterTitle = "") =>
             
             cartBtns.forEach(btn => {
                 btn.addEventListener("click", () =>{        
-                    if(localCartProducts === null){
+                    if(localCartProducts === null | localProducts.length === 0){
                         localCartProducts = [localProducts[btn.id]];
                         localStorage.setItem("cartProducts", JSON.stringify(localCartProducts));
                     }else{
@@ -114,26 +118,29 @@ const closeModal = () =>{
 /* -------------------------------------------------------------------------- */
 
 const checkoutGenerator = () => {
-    // const checkoutDiv = document.createElement('div');
+
     let totalPrice = 0;
-    const rows = localCartProducts.map(product => {
+    const rows = localCartProducts.map((product, index) => {
         totalPrice += parseFloat(priceIVA(product.price).toFixed(2));
         return `<tr>
             <td><img src="${product.image}"></td>
             <td>${product.title}</td>
             <td>${priceIVA(product.price).toFixed(2)} €</td>
+            <td><button id="${index}" class="delBtn"><span>x</span></button></td>
         </tr>`
     }
     ).join("");
 
     q(".pageWrapper").innerHTML = ""
-    q(".checkout").innerHTML = `
+    if(localCartProducts!== null && localCartProducts.length !== 0){
+        q(".checkout").innerHTML = `
         <table>
             <thead>
                 <tr>
                     <th>Image</th>
                     <th>Title</th>
                     <th>Price</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -142,12 +149,28 @@ const checkoutGenerator = () => {
             <tfoot>
                 <tr>
                     <th colspan="2">Total (IVA inc.)</th>
-                    <td>${totalPrice.toFixed(2)} €</td>
+                    <td colspan="2">${totalPrice.toFixed(2)} €</td>
                 </tr>
             </tfoot>
         </table>
         <button class="confirmPurchase">Confirm Purchase</button>
     `;
+
+    } else{
+        q(".checkout").innerHTML = `
+        <div class="responsePage">
+        <p>I'm sorry, but your cart is empty!</p>
+        <button onClick="window.location.reload(true)">Go Shopping!</button>
+        </div>
+`
+    }
+    
+    const delBtns = qAll(".delBtn");
+    delBtns.forEach(btn => btn.addEventListener("click", () => {
+        localCartProducts.splice([btn.id], 1);
+        localStorage.setItem("cartProducts", JSON.stringify(localCartProducts));
+        checkoutGenerator();
+    }));
 
     q(".confirmPurchase").addEventListener("click", () => {
         q(".checkout").innerHTML = `
@@ -220,8 +243,8 @@ const checkoutGenerator = () => {
             </div>`;
         return false;
     })
+});
 
-    });
 }
 
 /* -------------------------------------------------------------------------- */
@@ -231,3 +254,11 @@ const checkoutGenerator = () => {
 const priceIVA = (price, IVA = 22) => {
     return parseFloat(price) + (parseFloat(price)*parseFloat(IVA)/100);
 }
+
+// q(".delBtn").addEventListener("click", deleteCartProduct(q(".delBtn").id));
+
+const deleteCartProduct = () => {
+    console.log(localCartProducts);
+
+}
+
