@@ -201,7 +201,7 @@ const checkoutGenerator = () => {
             </div>
           </div>
         </div>
-        <input type="submit" value="Confirm" id="submitForm"/>
+        <button id="submitForm">Confirm</button>
       </form>
     `;
 

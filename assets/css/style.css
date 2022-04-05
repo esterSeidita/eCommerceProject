@@ -116,21 +116,20 @@ nav{
 }
 
 
-.navbar{
+
+
+.navbar {
     background-color: #232f3e;
-    width: 180px !important;
-    height: 100vh;
+    width: 100%;
+    height: auto !important;
     padding: 30px 10px;
     display: none;
-    position: fixed;
-    height: calc(100vh - 70px);
-    bottom: 0;
-    left:0;
-
+    margin-top: 2em;
+    position: relative;
 }
 
 .closeBtn{
-    position: absolute; top: 10px; right: 10px;
+    position: absolute; top: 20px; right: 20px;
 }
 
 .navbar h2{
@@ -332,6 +331,7 @@ form{
     border-radius: 1em;
     position: fixed;
     top: 50%; left:50%; transform: translate(-50%, -50%);
+    margin-top:3em;
 }
 
 form .row{
@@ -360,10 +360,10 @@ form input[type="text"]{
     width: 100%;
 }
 
-form input[type="submit"]{
+form button{
     padding: 0.8em;
     display: block;
-    width: 100px;
+    width: 100px !important;
     margin-top: 10px;
     margin-left: auto;
 }
@@ -391,11 +391,14 @@ form input[type="submit"]{
     form .cvv-details{
         width: 40%;
     }
-
     .navbar{
-        display: block;
-    }
-
+    display: block;
+    width: 180px !important;
+    position: fixed;
+    height: calc(100vh - 70px) !important;
+    bottom: 0;
+    left:0;
+}
     nav{
         display: none;
     }
@@ -473,6 +476,10 @@ form input[type="submit"]{
 
 
 @media all and (min-width: 1024px){
+
+    form{
+        margin: 0;
+    }
     .modal{
         max-width: 1000px;
         border-radius: 1em;
