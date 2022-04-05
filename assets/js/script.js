@@ -52,6 +52,8 @@ if(localProducts === null | localCategories === null){
         li.addEventListener("click", () => {
             const filter = li.textContent.toLowerCase();
             cardGenerator(localProducts, productsWrapper, filter);
+            navbar.classList.remove('open');
+            navSection.classList.remove('closed');
         })
     })
 
