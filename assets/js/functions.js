@@ -2,21 +2,20 @@ export {
     q,
     getApi,
     cardGenerator,
-    qAll
+    qAll,
+    checkoutGenerator
 }
 
 const q = (selector) => document.querySelector(selector);
 const qAll = (selector) => document.querySelectorAll(selector);
-
 let localCartProducts =  JSON.parse(localStorage.getItem('cartProducts'));
 const localProducts =  JSON.parse(localStorage.getItem('products'));
+const overlay = q(".overlay");
+const modal = q(".modal");
 
 if(localCartProducts !== null){
     q(".numProductsInCart").textContent = localCartProducts.length;
 }
-
-const overlay = q(".overlay");
-const modal = q(".modal");
 
 const getApi = async(URL) => {
     const data = await fetch(URL);
@@ -152,8 +151,8 @@ const checkoutGenerator = () => {
 
     q(".confirmPurchase").addEventListener("click", () => {
         q(".checkout").innerHTML = `
-        <h1>Shipping Datas</h1>
         <form>
+        <h1>Shipping Datas</h1>
         <div class="row">
           <input type="text" id="name" placeholder="Your Name" />
           <input type="text" id="number" placeholder="Your Number" />
@@ -225,11 +224,9 @@ const checkoutGenerator = () => {
     });
 }
 
-
-
-q(".cartBlock").addEventListener("click", checkoutGenerator)
-
-
+/* -------------------------------------------------------------------------- */
+/*                                  Price IVA                                 */
+/* -------------------------------------------------------------------------- */
 
 const priceIVA = (price, IVA = 22) => {
     return parseFloat(price) + (parseFloat(price)*parseFloat(IVA)/100);

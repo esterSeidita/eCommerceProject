@@ -2,7 +2,8 @@ import{
     q,
     getApi,
     cardGenerator,
-    qAll
+    qAll,
+    checkoutGenerator
 } from "./functions.js";
 
 const navbar = q(".navbar");
@@ -11,6 +12,12 @@ const categoryList = q(".categoryList");
 const productsWrapper = q(".productsWrapper");
 const searchBtn = q(".searchBtn");
 const searchInput = q("#search");
+const localProducts = JSON.parse(localStorage.getItem('products'));
+const localCategories = JSON.parse(localStorage.getItem('categories'));
+
+/* -------------------------------------------------------------------------- */
+/*                                 Toggle Menu                                */
+/* -------------------------------------------------------------------------- */
 
 navSection.addEventListener("click", () => {
     navbar.classList.add('open');
@@ -22,8 +29,9 @@ q(".closeBtn").addEventListener("click", () =>{
     navSection.classList.remove('closed');
 })
 
-const localProducts = JSON.parse(localStorage.getItem('products'));
-const localCategories = JSON.parse(localStorage.getItem('categories'));
+/* -------------------------------------------------------------------------- */
+/*                                   Get API                                  */
+/* -------------------------------------------------------------------------- */
 
 if(localProducts === null | localCategories === null){
     getApi("https://fakestoreapi.com/products")
@@ -47,6 +55,10 @@ if(localProducts === null | localCategories === null){
     localCategories.map(data => `<li class="category">${data.charAt(0).toUpperCase() + data.slice(1)}</li>`)
     .join("");
 
+    /* -------------------------------------------------------------------------- */
+    /*                               Category Filter                              */
+    /* -------------------------------------------------------------------------- */
+
     const category = qAll(".category");
     category.forEach(li => {
         li.addEventListener("click", () => {
@@ -57,8 +69,16 @@ if(localProducts === null | localCategories === null){
         })
     })
 
+    /* -------------------------------------------------------------------------- */
+    /*                                Search Filter                               */
+    /* -------------------------------------------------------------------------- */
+
     searchBtn.addEventListener("click", () => {
         cardGenerator(localProducts, productsWrapper, "", searchInput.value)
     })
 
+    /* -------------------------------------------------------------------------- */
+    /*                                  Checkout                                  */
+    /* -------------------------------------------------------------------------- */
 
+    q(".cartBlock").addEventListener("click", checkoutGenerator)
