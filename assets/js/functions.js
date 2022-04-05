@@ -214,7 +214,11 @@ const checkoutGenerator = () => {
         e.preventDefault();
         localStorage.removeItem("cartProducts");
         q(".numProductsInCart").textContent = "";
-        q(".checkout").innerHTML = `<p>Thank you for the purchase! :)</p>`;
+        q(".checkout").innerHTML = 
+            `<div class="responsePage">
+            <p>Thank you for the purchase!</p>
+            <button onClick="window.location.reload(true)">Homepage</button>
+            </div>`;
         return false;
     })
 

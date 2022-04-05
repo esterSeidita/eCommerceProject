@@ -361,6 +361,19 @@ form button{
     margin-left: auto;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                Response Page                               */
+/* -------------------------------------------------------------------------- */
+
+.responsePage{
+    padding: 1em;
+}
+
+.responsePage p{
+    font-size: 2rem;
+    text-align: center;
+    padding: 1em;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                 Responsive                                 */
@@ -467,6 +480,7 @@ form button{
         font-size: 1.8rem;
         padding: 1em;
     }
+
 }
 
 
@@ -475,6 +489,7 @@ form button{
     form{
         margin: 0;
     }
+
     .modal{
         max-width: 1000px;
         border-radius: 1em;
@@ -499,4 +514,5 @@ form button{
     .modal h3{
     font-size: 2rem;
     }
+
 }
