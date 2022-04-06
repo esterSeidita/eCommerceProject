@@ -19,14 +19,17 @@ body{
 }
 
 .d-flex{
-    display: flex;
+    display: flex !important;
 }
 
 .closed {
-    display:none;
+    display:none !important;
     visibility:hidden;
 }
 
+button{
+    padding: 0.8em;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                   Navbar                                   */
@@ -48,9 +51,16 @@ header>div{
     z-index: 1;
     height: 70px;
 }
+.iconsBlock{
+    display: flex;
+}
+.userIcon{
+    margin-right: 5px;
+    cursor: pointer;
+}
 
-.cartIcon{
-    font-size: 2em;
+.cartIcon, .userIcon{
+    font-size: 1.7em;
 }
 
 .cartBlock{
@@ -386,10 +396,57 @@ form button{
 }
 
 /* -------------------------------------------------------------------------- */
+/*                                 Login Page                                 */
+/* -------------------------------------------------------------------------- */
+
+.loginPage{
+    flex-flow: column wrap;
+    gap: 5px;
+    margin: 2em auto;
+    color: #131921;
+    width: 95%;
+    max-width: 450px;
+    background-color: #fff;
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    border-radius: 1em;
+    padding: 3em;
+    z-index: 100;
+    display: none;
+}
+
+.loginPage input{
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 0.2em;
+    margin-bottom: 10px;
+}
+
+.loginPage button{
+    border: none;
+    width: 100%;
+    border-radius: 2px;
+    font-weight: bolder;
+    color: aliceblue;
+}
+
+.loginPage #cancel, .changeBtn{
+    background-color: #ab1c1c;
+}
+
+.loginPage #loginSubmit, .goBtn{
+    background-color: rgb(32, 139, 32);
+}
+
+/* -------------------------------------------------------------------------- */
 /*                                 Responsive                                 */
 /* -------------------------------------------------------------------------- */
 
 @media all and (min-width:700px) {
+
+    
+    .loginPage button{
+        width: 49%;
+    }
 
     form{
         /* border: 3px solid #131921; */
@@ -439,6 +496,11 @@ form button{
     .productCard img{
         height: 280px;
     }
+
+    .userIcon{
+        margin-right: 10px;
+    }
+
     .cartIcon{
         margin-right: 5px;
     }
