@@ -77,11 +77,10 @@ const cardGenerator = (array, element, filterCategory = "", filterTitle = "") =>
             
             cartBtns.forEach(btn => {
                 btn.addEventListener("click", () =>{        
-                    if(localCartProducts === null | localProducts.length === 0){
-                        localCartProducts = [localProducts[btn.id]];
-                        localStorage.setItem("cartProducts", JSON.stringify(localCartProducts));
+                    if(localCartProducts === null){
+                        localStorage.setItem("cartProducts", JSON.stringify([localProducts[btn.id]]));
+                        localCartProducts = JSON.parse(localStorage.getItem("cartProducts"));
                     }else{
-                        console.log('localCartProducts', localCartProducts)
                         localCartProducts.push(localProducts[btn.id]);
                         localStorage.setItem("cartProducts", JSON.stringify(localCartProducts));
                     }
@@ -120,19 +119,21 @@ const closeModal = () =>{
 const checkoutGenerator = () => {
 
     let totalPrice = 0;
-    const rows = localCartProducts.map((product, index) => {
-        totalPrice += parseFloat(priceIVA(product.price).toFixed(2));
-        return `<tr>
-            <td><img src="${product.image}"></td>
-            <td>${product.title}</td>
-            <td>${priceIVA(product.price).toFixed(2)} €</td>
-            <td><button id="${index}" class="delBtn"><span>x</span></button></td>
-        </tr>`
-    }
-    ).join("");
+
 
     q(".pageWrapper").innerHTML = ""
     if(localCartProducts!== null && localCartProducts.length !== 0){
+        const rows = localCartProducts.map((product, index) => {
+            totalPrice += parseFloat(priceIVA(product.price).toFixed(2));
+            return `<tr>
+                <td><img src="${product.image}"></td>
+                <td>${product.title}</td>
+                <td>${priceIVA(product.price).toFixed(2)} €</td>
+                <td><button id="${index}" class="delBtn"><span>x</span></button></td>
+            </tr>`
+        }
+        ).join("");
+
         q(".checkout").innerHTML = `
         <table>
             <thead>

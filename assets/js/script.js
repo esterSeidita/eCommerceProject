@@ -45,8 +45,10 @@ if(localProducts === null | localCategories === null){
                 categoryList.innerHTML = 
                 datas.map(data => `<li class="category">${data.charAt(0).toUpperCase() + data.slice(1)}</li>`)
                 .join("");
+                window.location.reload(true);            
             })// end second then...
     }); // end first then
+
 } // end if...
 
     cardGenerator(localProducts, productsWrapper, "", "");
