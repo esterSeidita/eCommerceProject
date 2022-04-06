@@ -3,7 +3,8 @@ import{
     getApi,
     cardGenerator,
     qAll,
-    checkoutGenerator
+    checkoutGenerator,
+    loginGenerator
 } from "./functions.js";
 
 const navbar = q(".navbar");
@@ -84,4 +85,4 @@ if(localProducts === null | localCategories === null){
     /* -------------------------------------------------------------------------- */
 
     q(".cartBlock").addEventListener("click", checkoutGenerator);
-    
+    q(".userIcon").addEventListener("click", loginGenerator);

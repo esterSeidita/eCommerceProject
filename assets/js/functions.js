@@ -3,7 +3,8 @@ export {
     getApi,
     cardGenerator,
     qAll,
-    checkoutGenerator
+    checkoutGenerator,
+    loginGenerator
 }
 
 const q = (selector) => document.querySelector(selector);
@@ -92,14 +93,18 @@ const cardGenerator = (array, element, filterCategory = "", filterTitle = "") =>
                 }) //end onclick event
             }) //end forEach cart button
 
+
+
             q(".closeModalBtn").addEventListener("click", closeModal);
     })// end event on click
+
+    overlay.addEventListener("click", () =>{
+        closeModal();
+    });
 }) //end foreach card...
 } //end of function
 
-overlay.addEventListener("click", () =>{
-    closeModal();
-});
+
 
 /* -------------------------------------------------------------------------- */
 /*                                 Close Modal                                */
@@ -121,7 +126,9 @@ const checkoutGenerator = () => {
     let totalPrice = 0;
 
 
-    q(".pageWrapper").innerHTML = ""
+    q(".pageWrapper").innerHTML = "";
+    q(".loginPage").innerHTML = "";
+
     if(localCartProducts!== null && localCartProducts.length !== 0){
         const rows = localCartProducts.map((product, index) => {
             totalPrice += parseFloat(priceIVA(product.price).toFixed(2));
@@ -256,10 +263,66 @@ const priceIVA = (price, IVA = 22) => {
     return parseFloat(price) + (parseFloat(price)*parseFloat(IVA)/100);
 }
 
-// q(".delBtn").addEventListener("click", deleteCartProduct(q(".delBtn").id));
+/* -------------------------------------------------------------------------- */
+/*                            Login Page Generator                            */
+/* -------------------------------------------------------------------------- */
 
-const deleteCartProduct = () => {
-    console.log(localCartProducts);
+const loginGenerator = () =>{
+
+    // console.log('localStorage.get("loginData")', localStorage.get("loginData"))
+    const localUserData = JSON.parse(localStorage.getItem("loginData"));
+    const loginDiv = q(".loginPage");
+    loginDiv.classList.add("d-flex");
+    overlay.classList.add("open");
+
+    if(localUserData === null){
+        loginDiv.innerHTML = `
+        <h2>Log-In</h2>
+        <div class="row">
+            <input type="text" placeholder="Username" id="username">
+            <input type="password" placeholder="Password" id="password">
+        </div>
+        <div class="row">
+        <button id="loginSubmit">Submit</button>
+        <button id="cancel">Cancel</button>
+        </div>
+    `
+
+    q("#cancel").addEventListener("click", () => {
+        loginDiv.classList.remove("d-flex");
+        overlay.classList.remove("open");
+    });
+
+    q("#loginSubmit").addEventListener("click", () =>{
+        const username = q("#username").value;
+        const password = q("#password").value;
+        localStorage.setItem("loginData", JSON.stringify([username, password]));
+        loginDiv.classList.remove("d-flex");
+        overlay.classList.remove("open");
+    })
+    }
+    else{
+        loginDiv.innerHTML = `
+        <h2>Hi ${localUserData[0]}!</h2>
+        <p>You are correctly logged in!</p>
+        <div class="row">
+        <button class="goBtn" onClick="window.location.redirect(true)">Go Shopping!</button>
+        <button class="changeBtn" id="changeAccount">Change Account</button>
+        </div>
+    `
+        q(".changeBtn").addEventListener("click", () => {
+            localStorage.removeItem("loginData");
+            loginGenerator();
+        })
+    }
+
+
+
+    overlay.addEventListener("click", () =>{
+        loginDiv.classList.remove("d-flex");
+        overlay.classList.remove("open");
+    });
+
 
 }
 
