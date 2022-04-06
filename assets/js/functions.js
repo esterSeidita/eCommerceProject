@@ -268,8 +268,6 @@ const priceIVA = (price, IVA = 22) => {
 /* -------------------------------------------------------------------------- */
 
 const loginGenerator = () =>{
-
-    // console.log('localStorage.get("loginData")', localStorage.get("loginData"))
     const localUserData = JSON.parse(localStorage.getItem("loginData"));
     const loginDiv = q(".loginPage");
     loginDiv.classList.add("d-flex");

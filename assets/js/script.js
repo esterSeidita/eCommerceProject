@@ -85,4 +85,9 @@ if(localProducts === null | localCategories === null){
     /* -------------------------------------------------------------------------- */
 
     q(".cartBlock").addEventListener("click", checkoutGenerator);
+
+    /* -------------------------------------------------------------------------- */
+    /*                                    Login                                   */
+    /* -------------------------------------------------------------------------- */
+    
     q(".userIcon").addEventListener("click", loginGenerator);
