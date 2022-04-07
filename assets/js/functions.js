@@ -304,7 +304,7 @@ const loginGenerator = () =>{
         <h2>Hi ${localUserData[0]}!</h2>
         <p>You are correctly logged in!</p>
         <div class="row">
-        <button class="goBtn" onClick="window.location.redirect(true)">Go Shopping!</button>
+        <button class="goBtn" onClick="window.location.reload(true)">Go Shopping!</button>
         <button class="changeBtn" id="changeAccount">Change Account</button>
         </div>
     `
