@@ -29,6 +29,7 @@ body{
 
 button{
     padding: 0.8em;
+    cursor: pointer;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -93,7 +94,6 @@ header>div{
     position: absolute; right: 0;
     background-color: #febd69;
     border-radius: 0 0.5em 0.5em 0;
-    cursor: pointer;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -255,7 +255,6 @@ header h1{
     color: #fff;
     width: 100%;
     position: absolute; bottom: 0;
-    cursor: pointer;
 }
 
 .modal button i{
@@ -295,7 +294,6 @@ header h1{
     width: 25px;
     height: 25px;
     position: relative;
-    cursor: pointer;
 }
 
 .delBtn span{
@@ -422,6 +420,7 @@ form button{
 }
 
 .loginPage button{
+    margin-top: 1em;
     border: none;
     width: 100%;
     border-radius: 2px;
