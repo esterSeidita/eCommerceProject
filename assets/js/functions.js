@@ -37,7 +37,8 @@ const reduceString = (text, maxChar) => {
 
 const cardGenerator = (array, element, filterCategory = "", filterTitle = "") =>{
 
-    const filteredArray = array.filter((product) => product.category.includes(filterCategory) && product.title.toLowerCase().includes(filterTitle.toLowerCase()));
+    const filteredArray = filterCategory === "everything" ? array : array.filter((product) => product.category.includes(filterCategory) && product.title.toLowerCase().includes(filterTitle.toLowerCase()));
+
     element.innerHTML = 
     filteredArray.map(data => 
     `

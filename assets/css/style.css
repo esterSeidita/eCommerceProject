@@ -60,6 +60,9 @@ header>div{
     margin-right: 5px;
     cursor: pointer;
 }
+.fa-bars{
+    margin-left: 30px;
+}
 
 .cartIcon, .userIcon{
     font-size: 1.7em;
@@ -136,7 +139,14 @@ nav{
 }
 
 .closeBtn{
-    position: absolute; top: 20px; right: 20px;
+    position: absolute; top: 20px; right: 10px;
+    font-size: 25px;
+    padding: 10px;
+}
+
+.closeBtn span{
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
 }
 
 .navbar h2{

@@ -42,9 +42,11 @@ if(localProducts === null | localCategories === null){
         
         getApi("https://fakestoreapi.com/products/categories")
             .then((datas) => {
-                localStorage.setItem("categories", JSON.stringify(datas));
+                const categories = ["Everything"].concat(datas);
+                console.log(categories);
+                localStorage.setItem("categories", JSON.stringify(categories));
                 categoryList.innerHTML = 
-                datas.map(data => `<li class="category">${data.charAt(0).toUpperCase() + data.slice(1)}</li>`)
+                categories.map(data => `<li class="category">${data.charAt(0).toUpperCase() + data.slice(1)}</li>`)
                 .join("");
                 window.location.reload(true);            
             })// end second then...
